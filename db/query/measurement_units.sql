@@ -3,7 +3,8 @@ INSERT INTO measurement_units (
   unit
 ) VALUES (
   $1
-)RETURNING *;
+)
+RETURNING *;
 
 -- name: GetMeasurementUnit :one
 SELECT * FROM measurement_units
@@ -17,10 +18,10 @@ OFFSET $2;
 
 -- name: UpdateMeasurementUnits :one
 UPDATE measurement_units
-  set unit = $2,
+  set unit = $2
 WHERE measurement_units_id = $1
 RETURNING *;
 
--- name: DeleteCocktail :exec
+-- name: DeleteMeasurementUnits :exec
 DELETE FROM measurement_units
 WHERE measurement_units_id = $1;
