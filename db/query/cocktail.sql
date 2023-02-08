@@ -21,7 +21,7 @@ UPDATE cocktail
   set recipe_id = $2,
     ingredient_id = $3,
     measurement_qty_id = $4,
-    measurement_units_id = $5,
+    measurement_units_id = $5
 WHERE cocktail_id = $1
 RETURNING *;
 
