@@ -1,0 +1,6 @@
+# make file
+/Makefile
+
+# misc
+/.env
+/.env.local
