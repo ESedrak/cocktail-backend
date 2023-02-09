@@ -1,8 +1,8 @@
 -- name: CreateRecipe :one
 INSERT INTO recipe (
-  drink_name, instructions
+  drink_name, instructions, image_url
 ) VALUES (
-  $1, $2
+  $1, $2, $3
 )
 RETURNING *;
 
