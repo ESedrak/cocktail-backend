@@ -19,7 +19,8 @@ OFFSET $2;
 -- name: UpdateRecipe :one
 UPDATE recipe
   set drink_name = $2,
-  instructions = $3
+  instructions = $3,
+  image_url = $4
 WHERE recipe_id = $1
 RETURNING *;
 

@@ -5,13 +5,14 @@ package db
 
 import (
 	"context"
+	"database/sql"
 )
 
 const createRecipe = `-- name: CreateRecipe :one
 INSERT INTO recipe (
-  drink_name, instructions
+  drink_name, instructions, image_url
 ) VALUES (
-  $1, $2
+  $1, $2, $3
 )
 RETURNING recipe_id, drink_name, instructions, image_url, created_at
 `
@@ -19,10 +20,11 @@ RETURNING recipe_id, drink_name, instructions, image_url, created_at
 type CreateRecipeParams struct {
 	DrinkName    string
 	Instructions string
+	ImageUrl     sql.NullString
 }
 
 func (q *Queries) CreateRecipe(ctx context.Context, arg CreateRecipeParams) (Recipe, error) {
-	row := q.db.QueryRowContext(ctx, createRecipe, arg.DrinkName, arg.Instructions)
+	row := q.db.QueryRowContext(ctx, createRecipe, arg.DrinkName, arg.Instructions, arg.ImageUrl)
 	var i Recipe
 	err := row.Scan(
 		&i.RecipeID,
@@ -106,7 +108,8 @@ func (q *Queries) ListRecipes(ctx context.Context, arg ListRecipesParams) ([]Rec
 const updateRecipe = `-- name: UpdateRecipe :one
 UPDATE recipe
   set drink_name = $2,
-  instructions = $3
+  instructions = $3,
+  image_url = $4
 WHERE recipe_id = $1
 RETURNING recipe_id, drink_name, instructions, image_url, created_at
 `
@@ -115,10 +118,16 @@ type UpdateRecipeParams struct {
 	RecipeID     int64
 	DrinkName    string
 	Instructions string
+	ImageUrl     sql.NullString
 }
 
 func (q *Queries) UpdateRecipe(ctx context.Context, arg UpdateRecipeParams) (Recipe, error) {
-	row := q.db.QueryRowContext(ctx, updateRecipe, arg.RecipeID, arg.DrinkName, arg.Instructions)
+	row := q.db.QueryRowContext(ctx, updateRecipe,
+		arg.RecipeID,
+		arg.DrinkName,
+		arg.Instructions,
+		arg.ImageUrl,
+	)
 	var i Recipe
 	err := row.Scan(
 		&i.RecipeID,
