@@ -5,7 +5,6 @@ package db
 
 import (
 	"context"
-	"database/sql"
 )
 
 const createMeasurementUnit = `-- name: CreateMeasurementUnit :one
@@ -17,7 +16,7 @@ INSERT INTO measurement_units (
 RETURNING measurement_units_id, unit
 `
 
-func (q *Queries) CreateMeasurementUnit(ctx context.Context, unit sql.NullString) (MeasurementUnit, error) {
+func (q *Queries) CreateMeasurementUnit(ctx context.Context, unit string) (MeasurementUnit, error) {
 	row := q.db.QueryRowContext(ctx, createMeasurementUnit, unit)
 	var i MeasurementUnit
 	err := row.Scan(&i.MeasurementUnitsID, &i.Unit)
@@ -90,7 +89,7 @@ RETURNING measurement_units_id, unit
 
 type UpdateMeasurementUnitsParams struct {
 	MeasurementUnitsID int64
-	Unit               sql.NullString
+	Unit               string
 }
 
 func (q *Queries) UpdateMeasurementUnits(ctx context.Context, arg UpdateMeasurementUnitsParams) (MeasurementUnit, error) {

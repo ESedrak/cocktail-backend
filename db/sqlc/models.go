@@ -22,12 +22,12 @@ type Ingredient struct {
 
 type MeasurementQty struct {
 	MeasurementQtyID int64
-	QtyAmount        sql.NullInt64
+	QtyAmount        int64
 }
 
 type MeasurementUnit struct {
 	MeasurementUnitsID int64
-	Unit               sql.NullString
+	Unit               string
 }
 
 type Recipe struct {

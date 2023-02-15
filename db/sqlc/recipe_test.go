@@ -12,10 +12,10 @@ import (
 
 func createRandomRecipe(t *testing.T) Recipe {
 	arg := CreateRecipeParams{
-		DrinkName:    util.RandomCocktailString(),
-		Instructions: util.RandomCocktailString(),
+		DrinkName:    util.RandomNameString(),
+		Instructions: util.RandomNameString(),
 		ImageUrl: sql.NullString{
-			String: util.RandomCocktailString(),
+			String: util.RandomNameString(),
 			Valid:  true,
 		},
 	}
@@ -56,10 +56,10 @@ func TestUpdateRecipe(t *testing.T) {
 
 	arg := UpdateRecipeParams{
 		RecipeID:     recipe1.RecipeID,
-		DrinkName:    util.RandomCocktailString(),
-		Instructions: util.RandomCocktailString(),
+		DrinkName:    util.RandomNameString(),
+		Instructions: util.RandomNameString(),
 		ImageUrl: sql.NullString{
-			String: util.RandomCocktailString(),
+			String: util.RandomNameString(),
 			Valid:  true,
 		},
 	}

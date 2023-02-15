@@ -5,12 +5,12 @@ CREATE TABLE "ingredients" (
 
 CREATE TABLE "measurement_qty" (
   "measurement_qty_id" bigserial PRIMARY KEY,
-  "qty_amount" bigint
+  "qty_amount" bigint NOT NULL
 );
 
 CREATE TABLE "measurement_units" (
   "measurement_units_id" bigserial PRIMARY KEY,
-  "unit" varchar(250)
+  "unit" varchar(250) NOT NULL
 );
 
 CREATE TABLE "recipe" (

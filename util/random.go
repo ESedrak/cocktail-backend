@@ -30,8 +30,8 @@ func RandomString(n int) string {
 	return sb.String()
 }
 
-// RandomCocktail generates a random cocktail string
-func RandomCocktailString() string {
+// RandomName generates a random name string
+func RandomNameString() string {
 	return RandomString(15)
 }
 
