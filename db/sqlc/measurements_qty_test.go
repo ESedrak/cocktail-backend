@@ -65,10 +65,10 @@ func TestUpdateMeasurementQty(t *testing.T) {
 
 func TestDeleteMeasurementQty(t *testing.T) {
 	qty1 := createRandomQty(t)
-	err := testQueries.DeleteMeasurementUnits(context.Background(), qty1.MeasurementQtyID)
+	err := testQueries.DeleteMeasurementQty(context.Background(), qty1.MeasurementQtyID)
 	require.NoError(t, err)
 
-	qty2, err := testQueries.GetMeasurementUnit(context.Background(), qty1.MeasurementQtyID)
+	qty2, err := testQueries.GetMeasurementQty(context.Background(), qty1.MeasurementQtyID)
 	require.Error(t, err)
 	require.EqualError(t, err, sql.ErrNoRows.Error())
 	require.Empty(t, qty2)
@@ -84,11 +84,11 @@ func TestListMeasurementsQty(t *testing.T) {
 		Offset: 5,
 	}
 
-	units, err := testQueries.ListMeasurementQty(context.Background(), arg)
+	qtys, err := testQueries.ListMeasurementQty(context.Background(), arg)
 	require.NoError(t, err)
-	require.Len(t, units, 5)
+	require.Len(t, qtys, 5)
 
-	for _, unit := range units {
-		require.NotEmpty(t, unit)
+	for _, qty := range qtys {
+		require.NotEmpty(t, qty)
 	}
 }
