@@ -3,7 +3,6 @@ package db
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -18,11 +17,6 @@ func TestCocktailTx(t *testing.T) {
 	measurementQty1 := createRandomQty(t)
 
 	// run with concurrent transactions
-	fmt.Println(store)
-	fmt.Println(recipe1)
-	fmt.Println(ingredient1)
-	fmt.Println(measurementUnit1)
-	fmt.Println(measurementQty1)
 
 	errs := make(chan error)
 	results := make(chan CreateCocktailTxResult)
