@@ -15,16 +15,10 @@ func createRandomCocktail(t *testing.T) Cocktail {
 	qty := createRandomQty(t)
 
 	arg := CreateCocktailParams{
-		RecipeID:     recipe.RecipeID,
-		IngredientID: Ingredient.IngredientID,
-		MeasurementUnitsID: sql.NullInt64{
-			Int64: unit.MeasurementUnitsID,
-			Valid: true,
-		},
-		MeasurementQtyID: sql.NullInt64{
-			Int64: qty.MeasurementQtyID,
-			Valid: true,
-		},
+		RecipeID:           recipe.RecipeID,
+		IngredientID:       Ingredient.IngredientID,
+		MeasurementUnitsID: unit.MeasurementUnitsID,
+		MeasurementQtyID:   qty.MeasurementQtyID,
 	}
 
 	cocktail, err := testQueries.CreateCocktail(context.Background(), arg)
@@ -66,17 +60,11 @@ func TestUpdateCocktail(t *testing.T) {
 	measurementUnit1 := createRandomUnit(t)
 
 	arg := UpdateCocktailParams{
-		CocktailID:   cocktail1.CocktailID,
-		RecipeID:     recipe1.RecipeID,
-		IngredientID: ingredient1.IngredientID,
-		MeasurementQtyID: sql.NullInt64{
-			Int64: measurementQty1.MeasurementQtyID,
-			Valid: true,
-		},
-		MeasurementUnitsID: sql.NullInt64{
-			Int64: measurementUnit1.MeasurementUnitsID,
-			Valid: true,
-		},
+		CocktailID:         cocktail1.CocktailID,
+		RecipeID:           recipe1.RecipeID,
+		IngredientID:       ingredient1.IngredientID,
+		MeasurementQtyID:   measurementQty1.MeasurementQtyID,
+		MeasurementUnitsID: measurementUnit1.MeasurementUnitsID,
 	}
 
 	cocktail2, err := testQueries.UpdateCocktail(context.Background(), arg)
@@ -86,8 +74,8 @@ func TestUpdateCocktail(t *testing.T) {
 
 	require.Equal(t, cocktail1.CocktailID, cocktail2.CocktailID)
 	require.Equal(t, ingredient1.IngredientID, cocktail2.IngredientID)
-	require.Equal(t, measurementQty1.MeasurementQtyID, cocktail2.MeasurementQtyID.Int64)
-	require.Equal(t, measurementUnit1.MeasurementUnitsID, cocktail2.MeasurementUnitsID.Int64)
+	require.Equal(t, measurementQty1.MeasurementQtyID, cocktail2.MeasurementQtyID)
+	require.Equal(t, measurementUnit1.MeasurementUnitsID, cocktail2.MeasurementUnitsID)
 	require.Equal(t, recipe1.RecipeID, cocktail2.RecipeID)
 }
 

@@ -5,7 +5,6 @@ package db
 
 import (
 	"context"
-	"database/sql"
 )
 
 const createCocktail = `-- name: CreateCocktail :one
@@ -18,10 +17,10 @@ RETURNING cocktail_id, recipe_id, ingredient_id, measurement_qty_id, measurement
 `
 
 type CreateCocktailParams struct {
-	RecipeID           int64         `json:"recipe_id"`
-	IngredientID       int64         `json:"ingredient_id"`
-	MeasurementQtyID   sql.NullInt64 `json:"measurement_qty_id"`
-	MeasurementUnitsID sql.NullInt64 `json:"measurement_units_id"`
+	RecipeID           int64 `json:"recipe_id"`
+	IngredientID       int64 `json:"ingredient_id"`
+	MeasurementQtyID   int64 `json:"measurement_qty_id"`
+	MeasurementUnitsID int64 `json:"measurement_units_id"`
 }
 
 func (q *Queries) CreateCocktail(ctx context.Context, arg CreateCocktailParams) (Cocktail, error) {
@@ -122,11 +121,11 @@ RETURNING cocktail_id, recipe_id, ingredient_id, measurement_qty_id, measurement
 `
 
 type UpdateCocktailParams struct {
-	CocktailID         int64         `json:"cocktail_id"`
-	RecipeID           int64         `json:"recipe_id"`
-	IngredientID       int64         `json:"ingredient_id"`
-	MeasurementQtyID   sql.NullInt64 `json:"measurement_qty_id"`
-	MeasurementUnitsID sql.NullInt64 `json:"measurement_units_id"`
+	CocktailID         int64 `json:"cocktail_id"`
+	RecipeID           int64 `json:"recipe_id"`
+	IngredientID       int64 `json:"ingredient_id"`
+	MeasurementQtyID   int64 `json:"measurement_qty_id"`
+	MeasurementUnitsID int64 `json:"measurement_units_id"`
 }
 
 func (q *Queries) UpdateCocktail(ctx context.Context, arg UpdateCocktailParams) (Cocktail, error) {

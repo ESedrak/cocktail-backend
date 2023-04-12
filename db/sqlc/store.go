@@ -12,7 +12,7 @@ type Store struct {
 	db *sql.DB
 }
 
-// NewStore creates a new Store
+// Store provides all functions to execute db queries and transaction
 func NewStore(db *sql.DB) *Store {
 	return &Store{
 		db:      db,
@@ -39,10 +39,10 @@ func (store *Store) execTx(ctx context.Context, fn func(*Queries) error) error {
 
 // CreateCocktailParams contains the input parameters to transfer information so a cocktail can be created
 type CreateCocktailTxParams struct {
-	RecipeID          int64         `json:"recipe_id"`
-	IngredientID      int64         `json:"ingredient_id"`
-	MeasurementQtyID  sql.NullInt64 `json:"measurement_qty_id"`
-	MeasurementUnitID sql.NullInt64 `json:"measurement_unit_id"`
+	RecipeID          int64 `json:"recipe_id"`
+	IngredientID      int64 `json:"ingredient_id"`
+	MeasurementQtyID  int64 `json:"measurement_qty_id"`
+	MeasurementUnitID int64 `json:"measurement_unit_id"`
 }
 
 type CreateCocktailTxResult struct {
