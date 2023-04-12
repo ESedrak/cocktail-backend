@@ -8,32 +8,32 @@ import (
 )
 
 type Cocktail struct {
-	CocktailID         int64
-	RecipeID           int64
-	IngredientID       int64
-	MeasurementQtyID   sql.NullInt64
-	MeasurementUnitsID sql.NullInt64
+	CocktailID         int64         `json:"cocktail_id"`
+	RecipeID           int64         `json:"recipe_id"`
+	IngredientID       int64         `json:"ingredient_id"`
+	MeasurementQtyID   sql.NullInt64 `json:"measurement_qty_id"`
+	MeasurementUnitsID sql.NullInt64 `json:"measurement_units_id"`
 }
 
 type Ingredient struct {
-	IngredientID   int64
-	IngredientName string
+	IngredientID   int64  `json:"ingredient_id"`
+	IngredientName string `json:"ingredient_name"`
 }
 
 type MeasurementQty struct {
-	MeasurementQtyID int64
-	QtyAmount        int64
+	MeasurementQtyID int64 `json:"measurement_qty_id"`
+	QtyAmount        int64 `json:"qty_amount"`
 }
 
 type MeasurementUnit struct {
-	MeasurementUnitsID int64
-	Unit               string
+	MeasurementUnitsID int64  `json:"measurement_units_id"`
+	Unit               string `json:"unit"`
 }
 
 type Recipe struct {
-	RecipeID     int64
-	DrinkName    string
-	Instructions string
-	ImageUrl     sql.NullString
-	CreatedAt    time.Time
+	RecipeID     int64          `json:"recipe_id"`
+	DrinkName    string         `json:"drink_name"`
+	Instructions string         `json:"instructions"`
+	ImageUrl     sql.NullString `json:"image_url"`
+	CreatedAt    time.Time      `json:"created_at"`
 }

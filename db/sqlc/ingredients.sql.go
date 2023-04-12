@@ -53,8 +53,8 @@ OFFSET $2
 `
 
 type ListIngredientParams struct {
-	Limit  int32
-	Offset int32
+	Limit  int32 `json:"limit"`
+	Offset int32 `json:"offset"`
 }
 
 func (q *Queries) ListIngredient(ctx context.Context, arg ListIngredientParams) ([]Ingredient, error) {
@@ -88,8 +88,8 @@ RETURNING ingredient_id, ingredient_name
 `
 
 type UpdateIngredientParams struct {
-	IngredientID   int64
-	IngredientName string
+	IngredientID   int64  `json:"ingredient_id"`
+	IngredientName string `json:"ingredient_name"`
 }
 
 func (q *Queries) UpdateIngredient(ctx context.Context, arg UpdateIngredientParams) (Ingredient, error) {

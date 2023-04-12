@@ -53,8 +53,8 @@ OFFSET $2
 `
 
 type ListMeasurementQtyParams struct {
-	Limit  int32
-	Offset int32
+	Limit  int32 `json:"limit"`
+	Offset int32 `json:"offset"`
 }
 
 func (q *Queries) ListMeasurementQty(ctx context.Context, arg ListMeasurementQtyParams) ([]MeasurementQty, error) {
@@ -88,8 +88,8 @@ RETURNING measurement_qty_id, qty_amount
 `
 
 type UpdateMeasurementQtyParams struct {
-	MeasurementQtyID int64
-	QtyAmount        int64
+	MeasurementQtyID int64 `json:"measurement_qty_id"`
+	QtyAmount        int64 `json:"qty_amount"`
 }
 
 func (q *Queries) UpdateMeasurementQty(ctx context.Context, arg UpdateMeasurementQtyParams) (MeasurementQty, error) {

@@ -18,10 +18,10 @@ RETURNING cocktail_id, recipe_id, ingredient_id, measurement_qty_id, measurement
 `
 
 type CreateCocktailParams struct {
-	RecipeID           int64
-	IngredientID       int64
-	MeasurementQtyID   sql.NullInt64
-	MeasurementUnitsID sql.NullInt64
+	RecipeID           int64         `json:"recipe_id"`
+	IngredientID       int64         `json:"ingredient_id"`
+	MeasurementQtyID   sql.NullInt64 `json:"measurement_qty_id"`
+	MeasurementUnitsID sql.NullInt64 `json:"measurement_units_id"`
 }
 
 func (q *Queries) CreateCocktail(ctx context.Context, arg CreateCocktailParams) (Cocktail, error) {
@@ -78,8 +78,8 @@ OFFSET $2
 `
 
 type ListCocktailsParams struct {
-	Limit  int32
-	Offset int32
+	Limit  int32 `json:"limit"`
+	Offset int32 `json:"offset"`
 }
 
 func (q *Queries) ListCocktails(ctx context.Context, arg ListCocktailsParams) ([]Cocktail, error) {
@@ -122,11 +122,11 @@ RETURNING cocktail_id, recipe_id, ingredient_id, measurement_qty_id, measurement
 `
 
 type UpdateCocktailParams struct {
-	CocktailID         int64
-	RecipeID           int64
-	IngredientID       int64
-	MeasurementQtyID   sql.NullInt64
-	MeasurementUnitsID sql.NullInt64
+	CocktailID         int64         `json:"cocktail_id"`
+	RecipeID           int64         `json:"recipe_id"`
+	IngredientID       int64         `json:"ingredient_id"`
+	MeasurementQtyID   sql.NullInt64 `json:"measurement_qty_id"`
+	MeasurementUnitsID sql.NullInt64 `json:"measurement_units_id"`
 }
 
 func (q *Queries) UpdateCocktail(ctx context.Context, arg UpdateCocktailParams) (Cocktail, error) {

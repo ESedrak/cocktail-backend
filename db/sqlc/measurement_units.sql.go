@@ -53,8 +53,8 @@ OFFSET $2
 `
 
 type ListMeasurementUnitsParams struct {
-	Limit  int32
-	Offset int32
+	Limit  int32 `json:"limit"`
+	Offset int32 `json:"offset"`
 }
 
 func (q *Queries) ListMeasurementUnits(ctx context.Context, arg ListMeasurementUnitsParams) ([]MeasurementUnit, error) {
@@ -88,8 +88,8 @@ RETURNING measurement_units_id, unit
 `
 
 type UpdateMeasurementUnitsParams struct {
-	MeasurementUnitsID int64
-	Unit               string
+	MeasurementUnitsID int64  `json:"measurement_units_id"`
+	Unit               string `json:"unit"`
 }
 
 func (q *Queries) UpdateMeasurementUnits(ctx context.Context, arg UpdateMeasurementUnitsParams) (MeasurementUnit, error) {
