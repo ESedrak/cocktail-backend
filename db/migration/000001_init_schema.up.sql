@@ -25,8 +25,8 @@ CREATE TABLE "cocktail" (
   "cocktail_id" bigserial PRIMARY KEY,
   "recipe_id" bigint NOT NULL,
   "ingredient_id" bigint NOT NULL,
-  "measurement_qty_id" bigint DEFAULT null,
-  "measurement_units_id" bigint DEFAULT null
+  "measurement_qty_id" bigint NOT NULL,
+  "measurement_units_id" bigint NOT NULL
 );
 
 ALTER TABLE "cocktail" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipe" ("recipe_id");

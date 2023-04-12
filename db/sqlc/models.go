@@ -3,16 +3,15 @@
 package db
 
 import (
-	"database/sql"
 	"time"
 )
 
 type Cocktail struct {
-	CocktailID         int64         `json:"cocktail_id"`
-	RecipeID           int64         `json:"recipe_id"`
-	IngredientID       int64         `json:"ingredient_id"`
-	MeasurementQtyID   sql.NullInt64 `json:"measurement_qty_id"`
-	MeasurementUnitsID sql.NullInt64 `json:"measurement_units_id"`
+	CocktailID         int64 `json:"cocktail_id"`
+	RecipeID           int64 `json:"recipe_id"`
+	IngredientID       int64 `json:"ingredient_id"`
+	MeasurementQtyID   int64 `json:"measurement_qty_id"`
+	MeasurementUnitsID int64 `json:"measurement_units_id"`
 }
 
 type Ingredient struct {
@@ -31,9 +30,9 @@ type MeasurementUnit struct {
 }
 
 type Recipe struct {
-	RecipeID     int64          `json:"recipe_id"`
-	DrinkName    string         `json:"drink_name"`
-	Instructions string         `json:"instructions"`
-	ImageUrl     sql.NullString `json:"image_url"`
-	CreatedAt    time.Time      `json:"created_at"`
+	RecipeID     int64     `json:"recipe_id"`
+	DrinkName    string    `json:"drink_name"`
+	Instructions string    `json:"instructions"`
+	ImageUrl     *string   `json:"image_url"`
+	CreatedAt    time.Time `json:"created_at"`
 }

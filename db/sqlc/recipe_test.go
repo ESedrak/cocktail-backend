@@ -14,10 +14,7 @@ func createRandomRecipe(t *testing.T) Recipe {
 	arg := CreateRecipeParams{
 		DrinkName:    util.RandomNameString(),
 		Instructions: util.RandomNameString(),
-		ImageUrl: sql.NullString{
-			String: util.RandomNameString(),
-			Valid:  true,
-		},
+		ImageUrl:     nil,
 	}
 
 	recipe, err := testQueries.CreateRecipe(context.Background(), arg)
@@ -53,15 +50,12 @@ func TestGetRecipe(t *testing.T) {
 
 func TestUpdateRecipe(t *testing.T) {
 	recipe1 := createRandomRecipe(t)
-
+	mockImgUrl := util.RandomNameString()
 	arg := UpdateRecipeParams{
 		RecipeID:     recipe1.RecipeID,
 		DrinkName:    util.RandomNameString(),
 		Instructions: util.RandomNameString(),
-		ImageUrl: sql.NullString{
-			String: util.RandomNameString(),
-			Valid:  true,
-		},
+		ImageUrl:     &mockImgUrl,
 	}
 
 	recipe2, err := testQueries.UpdateRecipe(context.Background(), arg)

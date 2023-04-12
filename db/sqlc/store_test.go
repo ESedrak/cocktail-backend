@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"database/sql"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -25,8 +24,8 @@ func TestCocktailTx(t *testing.T) {
 		result, err := store.CreateCocktailTx(context.Background(), CreateCocktailTxParams{
 			RecipeID:          recipe1.RecipeID,
 			IngredientID:      ingredient1.IngredientID,
-			MeasurementUnitID: sql.NullInt64{Int64: measurementUnit1.MeasurementUnitsID, Valid: true},
-			MeasurementQtyID:  sql.NullInt64{Int64: measurementUnit1.MeasurementUnitsID, Valid: true},
+			MeasurementUnitID: measurementUnit1.MeasurementUnitsID,
+			MeasurementQtyID:  measurementUnit1.MeasurementUnitsID,
 		})
 
 		errs <- err
@@ -44,8 +43,8 @@ func TestCocktailTx(t *testing.T) {
 	require.NotEmpty(t, cocktail)
 	require.Equal(t, recipe1.RecipeID, cocktail.RecipeID)
 	require.Equal(t, ingredient1.IngredientID, cocktail.IngredientID)
-	require.Equal(t, measurementQty1.MeasurementQtyID, cocktail.MeasurementQtyID.Int64)
-	require.Equal(t, measurementUnit1.MeasurementUnitsID, cocktail.MeasurementUnitsID.Int64)
+	require.Equal(t, measurementQty1.MeasurementQtyID, cocktail.MeasurementQtyID)
+	require.Equal(t, measurementUnit1.MeasurementUnitsID, cocktail.MeasurementUnitsID)
 	require.NotZero(t, cocktail.CocktailID)
 
 	_, err = store.GetCocktail(context.Background(), cocktail.CocktailID)

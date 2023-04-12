@@ -5,7 +5,6 @@ package db
 
 import (
 	"context"
-	"database/sql"
 )
 
 const createRecipe = `-- name: CreateRecipe :one
@@ -18,9 +17,9 @@ RETURNING recipe_id, drink_name, instructions, image_url, created_at
 `
 
 type CreateRecipeParams struct {
-	DrinkName    string         `json:"drink_name"`
-	Instructions string         `json:"instructions"`
-	ImageUrl     sql.NullString `json:"image_url"`
+	DrinkName    string  `json:"drink_name"`
+	Instructions string  `json:"instructions"`
+	ImageUrl     *string `json:"image_url"`
 }
 
 func (q *Queries) CreateRecipe(ctx context.Context, arg CreateRecipeParams) (Recipe, error) {
@@ -115,10 +114,10 @@ RETURNING recipe_id, drink_name, instructions, image_url, created_at
 `
 
 type UpdateRecipeParams struct {
-	RecipeID     int64          `json:"recipe_id"`
-	DrinkName    string         `json:"drink_name"`
-	Instructions string         `json:"instructions"`
-	ImageUrl     sql.NullString `json:"image_url"`
+	RecipeID     int64   `json:"recipe_id"`
+	DrinkName    string  `json:"drink_name"`
+	Instructions string  `json:"instructions"`
+	ImageUrl     *string `json:"image_url"`
 }
 
 func (q *Queries) UpdateRecipe(ctx context.Context, arg UpdateRecipeParams) (Recipe, error) {
