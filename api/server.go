@@ -31,6 +31,13 @@ func NewServer(store *db.Store) *Server {
 	router.POST("/ingredient/:id", server.updateIngredient)
 	router.DELETE("/ingredient/:id", server.deleteIngredient)
 
+	// measurement unit
+	router.POST("/measurement-unit", server.createMeasurementUnit)
+	router.GET("/measurement-unit/:id", server.getMeasurementUnit)
+	router.GET("/measurement-units", server.listMeasurementUnits)
+	router.POST("/measurement-unit/:id", server.updateMeasurementUnit)
+	router.DELETE("/measurement-unit/:id", server.deleteMeasurementUnit)
+
 	server.router = router
 	return server
 }

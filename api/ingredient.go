@@ -38,7 +38,7 @@ func (server *Server) getIngredient(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
-	Ingredient, err := server.store.GetIngredient(ctx, req.IngredientID)
+	ingredient, err := server.store.GetIngredient(ctx, req.IngredientID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
@@ -47,7 +47,7 @@ func (server *Server) getIngredient(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-	ctx.JSON(http.StatusOK, Ingredient)
+	ctx.JSON(http.StatusOK, ingredient)
 }
 
 type listIngredientRequest struct {
@@ -66,12 +66,12 @@ func (server *Server) listIngredients(ctx *gin.Context) {
 		Limit:  req.PageSize,
 		Offset: (req.PageID - 1) * req.PageSize,
 	}
-	Ingredients, err := server.store.ListIngredient(ctx, arg)
+	ingredients, err := server.store.ListIngredient(ctx, arg)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-	ctx.JSON(http.StatusOK, Ingredients)
+	ctx.JSON(http.StatusOK, ingredients)
 }
 
 type deleteIngredientRequest struct {
