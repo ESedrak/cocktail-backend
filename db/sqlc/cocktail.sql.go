@@ -87,7 +87,7 @@ func (q *Queries) ListCocktails(ctx context.Context, arg ListCocktailsParams) ([
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Cocktail
+	items := []Cocktail{}
 	for rows.Next() {
 		var i Cocktail
 		if err := rows.Scan(

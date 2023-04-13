@@ -63,7 +63,7 @@ func (q *Queries) ListMeasurementQty(ctx context.Context, arg ListMeasurementQty
 		return nil, err
 	}
 	defer rows.Close()
-	var items []MeasurementQty
+	items := []MeasurementQty{}
 	for rows.Next() {
 		var i MeasurementQty
 		if err := rows.Scan(&i.MeasurementQtyID, &i.QtyAmount); err != nil {

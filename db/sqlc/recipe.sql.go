@@ -81,7 +81,7 @@ func (q *Queries) ListRecipes(ctx context.Context, arg ListRecipesParams) ([]Rec
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Recipe
+	items := []Recipe{}
 	for rows.Next() {
 		var i Recipe
 		if err := rows.Scan(

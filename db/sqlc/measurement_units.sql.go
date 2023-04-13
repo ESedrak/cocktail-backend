@@ -63,7 +63,7 @@ func (q *Queries) ListMeasurementUnits(ctx context.Context, arg ListMeasurementU
 		return nil, err
 	}
 	defer rows.Close()
-	var items []MeasurementUnit
+	items := []MeasurementUnit{}
 	for rows.Next() {
 		var i MeasurementUnit
 		if err := rows.Scan(&i.MeasurementUnitsID, &i.Unit); err != nil {
