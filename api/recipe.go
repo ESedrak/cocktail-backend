@@ -116,6 +116,12 @@ func (server *Server) updateRecipe(ctx *gin.Context) {
 	}
 
 	existingRecipe, err := server.store.GetRecipe(ctx, req.RecipeID)
+
+	if err != nil {
+		ctx.JSON(http.StatusNotFound, errorResponse(err))
+		return
+	}
+
 	updateExistingRecipeDetails(&req, &existingRecipe)
 
 	arg := db.UpdateRecipeParams{
