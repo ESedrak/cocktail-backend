@@ -15,14 +15,21 @@ type Server struct {
 func NewServer(store *db.Store) *Server {
 	server := &Server{store: store}
 	gin.SetMode(gin.ReleaseMode)
-	router := gin.New()
+	router := gin.Default()
 
 	// recipe
 	router.POST("/recipe", server.createRecipe)
 	router.GET("/recipe/:id", server.getRecipe)
-	router.GET("/recipe", server.listRecipe)
+	router.GET("/recipes", server.listRecipes)
 	router.POST("/recipe/:id", server.updateRecipe)
 	router.DELETE("/recipe/:id", server.deleteRecipe)
+
+	// ingredient
+	router.POST("/ingredient", server.createIngredient)
+	router.GET("/ingredient/:id", server.getIngredient)
+	router.GET("/ingredients", server.listIngredients)
+	router.POST("/ingredient/:id", server.updateIngredient)
+	router.DELETE("/ingredient/:id", server.deleteIngredient)
 
 	server.router = router
 	return server
