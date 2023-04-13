@@ -118,7 +118,7 @@ func (server *Server) updateMeasurementUnit(ctx *gin.Context) {
 		MeasurementUnitsID: existingMeasurementUnit.MeasurementUnitsID,
 		Unit:               existingMeasurementUnit.Unit,
 	}
-	Ingredients, err := server.store.UpdateMeasurementUnits(ctx, arg)
+	measurementUnit, err := server.store.UpdateMeasurementUnits(ctx, arg)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
@@ -127,7 +127,7 @@ func (server *Server) updateMeasurementUnit(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-	ctx.JSON(http.StatusOK, Ingredients)
+	ctx.JSON(http.StatusOK, measurementUnit)
 }
 
 func updateExistingMeasurementUnitDetails(in *updateMeasurementUnitRequest, existingMeasurementUnitDetails *db.MeasurementUnit) {
